@@ -86,10 +86,10 @@ void setup() {
 
 void loop() {
     C cancela[7];
-    cancela[0] = {2, 3, 29, 30, 31};
-    cancela[1] = {4, 5, 32, 33, 34};
-    cancela[2] = {6, 7, 35, 36, 37};
-    cancela[3] = {8, 9, 38, 39, 40};
+    cancela[0] =   {2, 3, 29, 30, 31};
+    cancela[1] =   {4, 5, 32, 33, 34};
+    cancela[2] =   {6, 7, 35, 36, 37};
+    cancela[3] =   {8, 9, 38, 39, 40};
     cancela[4] = {10, 11, 41, 42, 43};
     cancela[5] = {12, 13, 44, 45, 46};
     cancela[6] = {22, 23, 47, 48, 49};
@@ -101,23 +101,22 @@ void loop() {
             ciclos = str.substring(str.indexOf(" ") + 1).toInt();
             if (ciclos > 0) {
                 for (int i = 0; i < ciclos; i++) {
-                    Serial.println(ciclos);
-                    sobeTudo(200);
+                    sobeTudo(300);
                     Serial.println("");
                     //while(checkSubiu()==false){}
-                    desceTudo(200);
+                    desceTudo(300);
                     Serial.println("");
                     //while(checkDesceu()==false){}
-                    sobeTudo(200);
+                    sobeTudo(300);
                     Serial.println("");
                     delay(1500);
-                    reverteTudo(200);
+                    reverteTudo(300);
                     Serial.println("");
                     //while(checkSubiu()==false){}
-                    desceTudo(200);
+                    desceTudo(300);
                     Serial.println("");
                     delay(1500);
-                    reverteTudo(200);
+                    reverteTudo(300);
                     Serial.println("");
                     //while(checkDesceu()==false){}*/
                 }
@@ -149,7 +148,7 @@ void reverte(C cancela,int tempo){
 }
 
 void sobeTudo(int tempo){
-    C cancela[7];
+    C cancela[8];
   cancela[0] = {2, 3, 29, 30, 31};
   cancela[1] = {4, 5, 32, 33, 34};
   cancela[2] = {6, 7, 35, 36, 37};
@@ -158,18 +157,19 @@ void sobeTudo(int tempo){
   cancela[5] = {12, 13, 44, 45, 46};
   cancela[6] = {22, 23, 47, 48, 49};
   cancela[7] = {24, 25, 50, 51, 52};
+  cancela[8] = {0, 0, 0, 0, 0};
   int arrSize = sizeof(cancela)/sizeof(cancela[0]);
   for(int i=0;i<arrSize;i++){
-    /*digitalWrite(cancela[i].sobe, HIGH);
+    digitalWrite(cancela[i].sobe, HIGH);
     delay(tempo);
-    digitalWrite(cancela[i].sobe, LOW);*/
+    digitalWrite(cancela[i].sobe, LOW);
     Serial.println(cancela[i].sobe);
   }
   
 }
 
 void desceTudo(int tempo){
-    C cancela[7];
+    C cancela[8];
   cancela[0] = {2, 3, 29, 30, 31};
   cancela[1] = {4, 5, 32, 33, 34};
   cancela[2] = {6, 7, 35, 36, 37};
@@ -178,17 +178,18 @@ void desceTudo(int tempo){
   cancela[5] = {12, 13, 44, 45, 46};
   cancela[6] = {22, 23, 47, 48, 49};
   cancela[7] = {24, 25, 50, 51, 52};
+  cancela[8] = {0, 0, 0, 0, 0};
   int arrSize = sizeof(cancela)/sizeof(cancela[0]);
   for(int i=0;i<arrSize;i++){
-  /*digitalWrite(cancela[i].desce, HIGH);
+  digitalWrite(cancela[i].desce, HIGH);
     delay(tempo);
-    digitalWrite(cancela[i].desce, LOW);*/
+    digitalWrite(cancela[i].desce, LOW);
     Serial.println(cancela[i].desce);
   }
 }
 
 void reverteTudo(int tempo){
-    C cancela[7];
+    C cancela[8];
   cancela[0] = {2, 3, 29, 30, 31};
   cancela[1] = {4, 5, 32, 33, 34};
   cancela[2] = {6, 7, 35, 36, 37};
@@ -197,11 +198,12 @@ void reverteTudo(int tempo){
   cancela[5] = {12, 13, 44, 45, 46};
   cancela[6] = {22, 23, 47, 48, 49};
   cancela[7] = {24, 25, 50, 51, 52};
+  cancela[8] = {0, 0, 0, 0, 0};
   int arrSize = sizeof(cancela)/sizeof(cancela[0]);
   for(int i=0;i<arrSize;i++){
-    /*digitalWrite(cancela[i].reverte, HIGH);
+    digitalWrite(cancela[i].reverte, HIGH);
     delay(tempo);
-    digitalWrite(cancela[i].reverte, LOW);*/
+    digitalWrite(cancela[i].reverte, LOW);
     Serial.println(cancela[i].reverte);
   }
 }
