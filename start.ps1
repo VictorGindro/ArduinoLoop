@@ -1,4 +1,4 @@
-$port= new-Object System.IO.Ports.SerialPort COM4,9500,None,8,one
+$port= new-Object System.IO.Ports.SerialPort COM12,9500,None,8,one
 $port.open()
 $Age = Read-Host "Digite o numero de ciclos"
 $port.WriteLine("ciclos "+$Age)

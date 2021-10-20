@@ -11,6 +11,18 @@ struct C {
     int desce;
     int reverte;
 };
+
+//status aberto azul
+//status fechado marrom
+//comum status branco/azul
+//abre branco/marrom
+//fecha verde
+//cumum abrir branco/verde
+//closing laranja/branco laranja
+//comum subir/descer branco/verde
+
+
+
 /*C cancela[]={{2, 3, 29, 30, 31},
               {4, 5, 32, 33, 34},
               {6, 7, 35, 36, 37},
@@ -95,40 +107,46 @@ void loop() {
     cancela[6] = {22, 23, 47, 48, 49};
     cancela[7] = {24, 25, 50, 51, 52};
 
-    if (Serial.available()) {
+    //if (Serial.available()) {
+    //Serial.println(digitalRead(cancela[0].subiu));
+    //}
+    
         str = Serial.readStringUntil('\n');
         if (str != "") {
             ciclos = str.substring(str.indexOf(" ") + 1).toInt();
             if (ciclos > 0) {
                 for (int i = 0; i < ciclos; i++) {
-                    sobeTudo(300);
-                    Serial.println("");
-                    //while(checkSubiu()==false){}
-                    desceTudo(300);
-                    Serial.println("");
-                    //while(checkDesceu()==false){}
-                    sobeTudo(300);
-                    Serial.println("");
-                    delay(1500);
-                    reverteTudo(300);
-                    Serial.println("");
-                    //while(checkSubiu()==false){}
-                    desceTudo(300);
-                    Serial.println("");
-                    delay(1500);
-                    reverteTudo(300);
-                    Serial.println("");
-                    //while(checkDesceu()==false){}*/
+                    Serial.println("Subindo todas as cancelas.");
+                    sobeTudo(4000);
+                    if(checkSubiu()==true){
+                    Serial.println("Subiu");
+                    Serial.println("Descendo todas as cancelas.");
+                    desceTudo(4000);
+                    if(checkDesceu()==true){
+                    Serial.println("Desceu");
+                    Serial.println("Subindo todas as cancelas.");
+                    sobeTudo(4000);
+                    //reverte(cancela[0],300); fazer o metedo de revers'ao sem o closing
+                    if(checkSubiu()==true){
+                    Serial.println("Subiu");
+                    Serial.println("Descendo e revertendo todas as cancelas.");
+                    desceTudo(100);
+                    reverteTudo(3800);
+                    if(checkDesceu()==true){
+                    Serial.println("Desceu"); 
+                    }
+                    }
+                    }
+                    }
                 }
             }
         }
     }
-}
+
 void sobe(C cancela,int tempo){
-  //digitalWrite(cancela.sobe, HIGH);
-  //delay(tempo);
-  //digitalWrite(cancela.sobe, LOW);
-  Serial.println("Subindo"+ cancela.sobe);
+  digitalWrite(cancela.sobe, HIGH);
+  delay(tempo);
+  digitalWrite(cancela.sobe, LOW);
 }
 
 void desce(C cancela,int tempo){
@@ -139,12 +157,9 @@ void desce(C cancela,int tempo){
 
 void reverte(C cancela,int tempo){
   digitalWrite(cancela.reverte, HIGH);
-  delay(50);
-  digitalWrite(cancela.reverte, LOW);
   delay(tempo);
   digitalWrite(cancela.reverte, LOW);
-  delay(50);
-  digitalWrite(cancela.reverte, HIGH);
+
 }
 
 void sobeTudo(int tempo){
@@ -155,17 +170,17 @@ void sobeTudo(int tempo){
   cancela[3] = {8, 9, 38, 39, 40};
   cancela[4] = {10, 11, 41, 42, 43};
   cancela[5] = {12, 13, 44, 45, 46};
-  cancela[6] = {22, 23, 47, 48, 49};
+  cancela[6] = {22, 23, 47, 48,49};
   cancela[7] = {24, 25, 50, 51, 52};
   cancela[8] = {0, 0, 0, 0, 0};
   int arrSize = sizeof(cancela)/sizeof(cancela[0]);
   for(int i=0;i<arrSize;i++){
     digitalWrite(cancela[i].sobe, HIGH);
-    delay(tempo);
+    delay(200);
     digitalWrite(cancela[i].sobe, LOW);
-    Serial.println(cancela[i].sobe);
+    //Serial.println(cancela[i].sobe);
   }
-  
+      delay(tempo);
 }
 
 void desceTudo(int tempo){
@@ -182,10 +197,11 @@ void desceTudo(int tempo){
   int arrSize = sizeof(cancela)/sizeof(cancela[0]);
   for(int i=0;i<arrSize;i++){
   digitalWrite(cancela[i].desce, HIGH);
-    delay(tempo);
+  delay(200);
     digitalWrite(cancela[i].desce, LOW);
-    Serial.println(cancela[i].desce);
+    //Serial.println(cancela[i].desce);
   }
+      delay(tempo);
 }
 
 void reverteTudo(int tempo){
@@ -202,10 +218,11 @@ void reverteTudo(int tempo){
   int arrSize = sizeof(cancela)/sizeof(cancela[0]);
   for(int i=0;i<arrSize;i++){
     digitalWrite(cancela[i].reverte, HIGH);
-    delay(tempo);
+    delay(600);
     digitalWrite(cancela[i].reverte, LOW);
-    Serial.println(cancela[i].reverte);
+   // Serial.println(cancela[i].reverte);
   }
+      delay(tempo);
 }
 
 int checkSubiu(){
@@ -219,10 +236,11 @@ int checkSubiu(){
   cancela[6] = {22, 23, 47, 48, 49};
   cancela[7] = {24, 25, 50, 51, 52};
   int arrSize = sizeof(cancela)/sizeof(cancela[0]);
-  if(cancela[0].subiu == true && cancela[1].subiu == true && cancela[2].subiu == true && cancela[3].subiu == true && cancela[4].subiu == true && cancela[5].subiu == true && cancela[6].subiu == true && cancela[7].subiu == true){
-    return 1;
+  //if(cancela[0].subiu == true && cancela[1].subiu == true && cancela[2].subiu == true && cancela[3].subiu == true && cancela[4].subiu == true && cancela[5].subiu == true && cancela[6].subiu == true && cancela[7].subiu == true){
+    if(digitalRead(cancela[0].subiu)==false){
+    return false;
   }else{
-      return 0;
+      return true;
   }
 }
 int checkDesceu(){
@@ -236,9 +254,10 @@ int checkDesceu(){
   cancela[6] = {22, 23, 47, 48, 49};
   cancela[7] = {24, 25, 50, 51, 52};
   int arrSize = sizeof(cancela)/sizeof(cancela[0]);
-  if(cancela[0].desceu == true && cancela[1].desceu == true && cancela[2].desceu == true && cancela[3].desceu == true && cancela[4].desceu == true && cancela[5].desceu == true && cancela[6].desceu == true && cancela[7].desceu == true){
-    return 1;
+  //if(digitalRead(cancela[0].desceu) == false && digitalRead(cancela[1].desceu) == false && digitalRead(cancela[2].desceu) == false &&digitalRead(cancela[3].desceu) == false /* && cancela[4].desceu == true && cancela[5].desceu == true && cancela[6].desceu == true && cancela[7].desceu == true*/){
+    if(digitalRead(cancela[0].desceu) == false){
+    return false;
   }else{
-      return 0;
+      return true;
   }
 }
