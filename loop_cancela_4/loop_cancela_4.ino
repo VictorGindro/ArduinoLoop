@@ -59,7 +59,7 @@ void setup() {
     pinMode(12, INPUT);
 
     pinMode(47, OUTPUT);
-    pinMode(47, OUTPUT);
+    pinMode(48, OUTPUT);
     pinMode(49, OUTPUT);
     pinMode(23, INPUT);
     pinMode(22, INPUT);
@@ -102,20 +102,20 @@ void loop() {
             if (ciclos > 0) {
                 for (int i = 0; i < ciclos; i++) {
                     Serial.println("Subindo todas as cancelas.");
-                    sobeTudo(4000);
+                    sobeTudo(2000);
                     if(checkSubiu()==true){
                     Serial.println("Subiu");
                     Serial.println("Descendo todas as cancelas.");
-                    desceTudo(4000);
+                    desceTudo(2000);
                     if(checkDesceu()==true){
                     Serial.println("Desceu");
                     Serial.println("Subindo todas as cancelas.");
-                    sobeTudo(4000);
+                    sobeTudo(2000);
                     //reverte(cancela[0],300); fazer o metedo de revers'ao sem o closing
                     if(checkSubiu()==true){
                     Serial.println("Subiu");
                     Serial.println("Descendo e revertendo todas as cancelas.");
-                    desceTudo(100);
+                    desceTudo(300);
                     reverteTudo(3800);
                     if(checkDesceu()==true){
                     Serial.println("Desceu"); 
@@ -170,7 +170,7 @@ void sobeTudo(int tempo){
   int arrSize = sizeof(cancela)/sizeof(cancela[0]);
   for(int i=0;i<arrSize;i++){
     digitalWrite(cancela[i].sobe, HIGH);
-    delay(200);
+    delay(100);
     digitalWrite(cancela[i].sobe, LOW);
     //Serial.println(cancela[i].sobe);
   }
@@ -191,7 +191,7 @@ void desceTudo(int tempo){
   int arrSize = sizeof(cancela)/sizeof(cancela[0]);
   for(int i=0;i<arrSize;i++){
   digitalWrite(cancela[i].desce, HIGH);
-  delay(200);
+  delay(100);
     digitalWrite(cancela[i].desce, LOW);
     //Serial.println(cancela[i].desce);
   }
@@ -212,7 +212,7 @@ void reverteTudo(int tempo){
   int arrSize = sizeof(cancela)/sizeof(cancela[0]);
   for(int i=0;i<arrSize;i++){
     digitalWrite(cancela[i].reverte, HIGH);
-    delay(250);
+    delay(300);
     digitalWrite(cancela[i].reverte, LOW);
    // Serial.println(cancela[i].reverte);
   }

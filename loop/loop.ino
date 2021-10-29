@@ -59,7 +59,7 @@ void setup() {
     pinMode(12, INPUT);
 
     pinMode(47, OUTPUT);
-    pinMode(47, OUTPUT);
+    pinMode(48, OUTPUT);
     pinMode(49, OUTPUT);
     pinMode(23, INPUT);
     pinMode(22, INPUT);
@@ -103,21 +103,21 @@ void loop() {
             if (ciclos > 0) {
                 for (int i = 0; i < ciclos; i++) {
                     Serial.println("Subindo todas as cancelas.");
-                    sobeTudo(4000);
+                    sobeTudo(3000);
                     if(checkSubiu()==true){
                     Serial.println("Subiu");
                     Serial.println("Descendo todas as cancelas.");
-                    desceTudo(4000);
+                    desceTudo(3000);
                     if(checkDesceu()==true){
                     Serial.println("Desceu");
                     Serial.println("Subindo todas as cancelas.");
-                    sobeTudo(4000);
-                    //reverte(cancela[0],300); fazer o metedo de revers'ao sem o closing
+                    sobeTudo(3000);
+                    //reverte(cancela[0],1200); fazer o metedo de revers'ao sem o closing
                     if(checkSubiu()==true){
                     Serial.println("Subiu");
                     Serial.println("Descendo e revertendo todas as cancelas.");
-                    desceTudo(100);
-                    reverteTudo(3800);
+                    desceTudo(200);
+                    reverteTudo(2800);
                     if(checkDesceu()==true){
                     Serial.println("Desceu"); 
                     }
@@ -204,7 +204,7 @@ void reverteTudo(int tempo){
   int arrSize = sizeof(cancela)/sizeof(cancela[0]);
   for(int i=0;i<arrSize;i++){
     digitalWrite(cancela[i].reverte, HIGH);
-    delay(250);
+    delay(300);
     digitalWrite(cancela[i].reverte, LOW);
    // Serial.println(cancela[i].reverte);
   }

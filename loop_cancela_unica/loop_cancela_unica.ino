@@ -86,8 +86,8 @@ void loop() {
     cancela[6] = {22, 23, 47, 48, 49};
     cancela[7] = {24, 25, 50, 51, 52};
 
-    /*if (Serial.available()) {
-      str = Serial.readStringUntil('\n');
+    if (Serial.available()) {
+      /*str = Serial.readStringUntil('\n');
         if (str != "") {
           ciclos = str.substring(str.indexOf(" ") + 1).toInt();
             if (ciclos > 0) {
@@ -128,6 +128,7 @@ void loop() {
             }
         }
     }
+}
 
 void sobe(C cancela,int tempo){
   digitalWrite(cancela.sobe, HIGH);
@@ -222,8 +223,8 @@ int checkSubiu(){
   cancela[6] = {22, 23, 47, 48, 49};
   cancela[7] = {24, 25, 50, 51, 52};
   int arrSize = sizeof(cancela)/sizeof(cancela[0]);
-  if(digitalRead(cancela[0].subiu) == false && digitalRead(cancela[1].subiu) == false && digitalRead(cancela[2].subiu) == false && digitalRead(cancela[3].subiu) == false){ /*&& cancela[4].subiu == true && cancela[5].subiu == true && cancela[6].subiu == true && cancela[7].subiu == true){*/
-    //if(digitalRead(cancela[0].subiu)==false){
+  //if(digitalRead(cancela[0].subiu) == false && digitalRead(cancela[1].subiu) == false && digitalRead(cancela[2].subiu) == false && digitalRead(cancela[3].subiu) == false){ /*&& cancela[4].subiu == true && cancela[5].subiu == true && cancela[6].subiu == true && cancela[7].subiu == true){*/
+    if(digitalRead(cancela[0].subiu)==false){
     return true;
   }else{
       return false;
@@ -240,8 +241,8 @@ int checkDesceu(){
   cancela[6] = {22, 23, 47, 48, 49};
   cancela[7] = {24, 25, 50, 51, 52};
   int arrSize = sizeof(cancela)/sizeof(cancela[0]);
-  if(digitalRead(cancela[0].desceu) == false && digitalRead(cancela[1].desceu) == false && digitalRead(cancela[2].desceu) == false && digitalRead(cancela[3].desceu) == false /* && cancela[4].desceu == true && cancela[5].desceu == true && cancela[6].desceu == true && cancela[7].desceu == true*/){
-    //if(digitalRead(cancela[0].desceu) == false){
+  //if(digitalRead(cancela[0].desceu) == false && digitalRead(cancela[1].desceu) == false && digitalRead(cancela[2].desceu) == false && digitalRead(cancela[3].desceu) == false /* && cancela[4].desceu == true && cancela[5].desceu == true && cancela[6].desceu == true && cancela[7].desceu == true*/){
+    if(digitalRead(cancela[0].desceu) == false){
     return true;
   }else{
       return false;
