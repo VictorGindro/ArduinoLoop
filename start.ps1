@@ -1,6 +1,6 @@
 $port= new-Object System.IO.Ports.SerialPort COM12,9500,None,8,one
 $port.open()
-$Age = Read-Host "Digite o numero de ciclos"
+$Age = Read-Host
 $port.WriteLine("ciclos "+$Age)
 do {
     $line = $port.ReadLine()
@@ -8,3 +8,4 @@ do {
 }
 while ($port.IsOpen)
 $port.Close()
+$host.Exit()
